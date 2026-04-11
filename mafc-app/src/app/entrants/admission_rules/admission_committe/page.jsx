@@ -13,7 +13,6 @@ const AdmissionCommitte = async()=>{
 
 const pageData = await getAdmissionCommittePageData();
 
-
 if(!pageData) return <EmptyState/>
 
 const {page_title, markdown, link, google_drive_doc_folder_id} = pageData?.data;

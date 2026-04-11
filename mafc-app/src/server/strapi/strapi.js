@@ -285,7 +285,6 @@ try {
     if (!res.ok) {
       throw new Error(`Failed to fetch. Status: ${res.status}`);
     }
-
     const json = await res.json();
 
     return json?.data || null;

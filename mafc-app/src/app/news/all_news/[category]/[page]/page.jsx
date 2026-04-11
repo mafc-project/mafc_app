@@ -38,7 +38,6 @@ const NewsPageTest = async({params})=> {
     getTotalPages(category, 1, POSTS_PER_PAGE)
   ]);
 
-
   if(!news){notFound()}
 
     return (
