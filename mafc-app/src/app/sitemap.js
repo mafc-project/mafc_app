@@ -4,7 +4,8 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ??
     ? 'http://localhost:3000'
     : 'https://custom-domain.com');
 
-import { getAllNews, getSubjectCommissionsList, getExtracurricularPageData, getIntroductoryQuidePageData, getIntelligentNetworkingPageData } from "@/server/strapi/strapi";
+import { getAllNews, getSubjectCommissionList, getExtracurricularPageData, getIntroductoryQuidePageData, getIntelligentNetworkingPageData } from "@/server/strapi/strapi";
+
 
 export default async function sitemap() {
 
@@ -107,7 +108,7 @@ try {
   [news, commissions, clubs, edu_programs, intelligent_networking] =
     await Promise.all([
       getAllNews(),
-      getSubjectCommissionsList(),
+      getSubjectCommissionList(),
       getExtracurricularPageData(),
       getIntroductoryQuidePageData(),
       getIntelligentNetworkingPageData()

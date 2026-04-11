@@ -1132,6 +1132,39 @@ export async function getSubjectCommissionData(slug) {
   }
 };
 
+export async function getSubjectCommissionList() {
+  const route = '/api/subject-commissions-lists'
+
+  const query = QueryString.stringify({
+  populate:{
+    category: {
+      populate: "*"
+    },
+  },
+}, { encodeValuesOnly: true });
+
+  try {
+    const res = await fetch(`${baseURL}${route}?${query}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+  
+    });
+
+     if(!res) return null;
+
+    const json = await res.json();
+
+    return json?.data || null;
+
+  } catch (error) {
+    console.error('Error fetching nmt data:', error);
+    return null;
+  }
+};
+
+
+
 
 
 export async function getAdministration() {
