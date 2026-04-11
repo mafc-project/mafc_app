@@ -4,6 +4,7 @@ import OptionalSubjects from "@/components/elements/optionalSubjects/OptionalSub
 import { fetchAllDocxFromSubfolders } from "@/server/google/drive";
 import { getIntroductoryQuidePageData, getConceptualPrinciplesPageData } from "@/server/strapi/strapi";
 import generateStaticPageMeta from "@/utils/generateStaticPageMeta";
+import EmptyState from "@/components/modules/EmptyState/EmptyState";
 
 export const revalidate = 3600;
 export const metadata = generateStaticPageMeta('/educational_process/conceptual_principles');
@@ -11,8 +12,9 @@ export const metadata = generateStaticPageMeta('/educational_process/conceptual_
 const ConceptualPrinciplesPage = async()=> {
 
     const pageData = await getConceptualPrinciplesPageData();
-    const proffesionsData = await getIntroductoryQuidePageData();
+    if(!pageData) return <EmptyState/>;
 
+    const proffesionsData = await getIntroductoryQuidePageData();
 
     const {folder_id, title} = pageData?.edu_process_participants_folder_id;
     const eduProcessParticipantsDocs = await fetchAllDocxFromSubfolders(folder_id);
