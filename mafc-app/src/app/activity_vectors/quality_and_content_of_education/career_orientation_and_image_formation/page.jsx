@@ -1,4 +1,4 @@
-import { getDepartment } from "@/server/strapi/strapi";
+import { getDepartment, getSocialMediaData } from "@/server/strapi/strapi";
 import DepartmentSection from "@/components/modules/DepartmentSection/DepartmentSection";
 import { fetchAllDocxFromSubfolders } from "@/server/google/drive";
 import News from "@/components/modules/news/News";
@@ -23,12 +23,13 @@ const CareerOrientationAndImageFormation= async()=> {
 
     const category = pageData?.category?.code;
     const news =await getNews(category);
+    const social = await getSocialMediaData();
     const docxList = await fetchAllDocxFromSubfolders(google_drive_doc_folder_id);
 
 return <>
     <DepartmentSection link_item={link} page_title={page_title} markdown={markdown} docList={docxList}/>
     {(news && news?.length > 0) && <News newsList={news} title={'Будуємо бренд разом'} subtitle={'Формуємо позитивний імідж коледжу через активну взаємодію, медіаприсутність, досягнення студентів і партнерство з громадою'} category={category}/>}
-    <LargeSocialPanel title={'Коледж у медіа'}/>
+    <LargeSocialPanel social={social} title={'Коледж у медіа'}/>
 </>
 
 }
