@@ -14,6 +14,7 @@ const dafaulCategory= {code: 'all', description: 'Усі новини'}
 
 export async function generateStaticParams() {
   const categories = await getAllCategories();
+  if(!categories) return [];
   const allCategories = [dafaulCategory, ...categories];
   const params = [];
 
@@ -30,7 +31,7 @@ export async function generateStaticParams() {
 }
 
 const NewsPageTest = async({params})=> {
-      const { category, page } = await params;
+  const { category, page } = await params;
   const [categories, news, totalPages] = await Promise.all([
     getAllCategories(),
     getNews(category, page, POSTS_PER_PAGE),
@@ -39,9 +40,6 @@ const NewsPageTest = async({params})=> {
 
 
   if(!news){notFound()}
-
-
- 
 
     return (
     <><ScrollToTopOnPageChange/>
