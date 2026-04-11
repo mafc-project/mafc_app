@@ -7,7 +7,7 @@ import NMTLIst from "../modules/NMTList/NMTlist";
 
 
 
-const LibraryPage =({libraryData})=> {
+const LibraryPage =({pageDocx,libraryData})=> {
 
 const{page_title, e_libraries, work_schedule, services, images, rules, dashboard} = libraryData;
 
@@ -21,12 +21,17 @@ return (
         work_shedule_data={work_schedule}/>
 
     <AccordionComponent 
+    data={pageDocx} 
+    title={'регламентуючі документи'}/>
+
+    <AccordionComponent 
     data={rules} 
     title={'користувачам'}/> 
     
     <AccordionComponent 
     data={services} 
-    title={'послуги'}/>    
+    title={'послуги'}/>   
+     
     <GallerySection imageArr={images}/>
     
    <NMTLIst 

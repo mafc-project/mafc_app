@@ -9,6 +9,7 @@ import EmptyState from "@/components/modules/EmptyState/EmptyState";
 export const revalidate = 3600;
 export async function generateStaticParams() {
   const res = await getIntroductoryQuidePageData();
+  if(!res) return [];
 
    const paths = res?.professions?.map((n) => ({
         params: { slug: n.slug },

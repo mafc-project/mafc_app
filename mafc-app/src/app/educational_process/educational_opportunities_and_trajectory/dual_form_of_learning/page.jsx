@@ -18,7 +18,7 @@ const DualFormOfLearning = async ()=> {
     const {data, video, image} = pageData;
     const docsList = await fetchAllDocxFromSubfolders(data?.google_drive_doc_folder_id);
 
-     const imagesArr = image || [];
+    const imagesArr = image || [];
     const videosArr = video || [];
     const mediaArr = [...imagesArr, ...videosArr];
 
@@ -30,7 +30,6 @@ const DualFormOfLearning = async ()=> {
             link_item={data?.link}
             docList={docsList}/>
             <Gallery imageArr={mediaArr}/>
-        
         </>
        
     )

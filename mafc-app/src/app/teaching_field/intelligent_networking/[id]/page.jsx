@@ -9,6 +9,7 @@ export const revalidate = 3600;
 
 export async function generateStaticParams() {
   const res = await getIntelligentNetworkingPageData();
+if(!res) return [];
 
    const paths = res?.intelligent_networking_activities?.map((n) => ({
         params: { id: n?.documentId },

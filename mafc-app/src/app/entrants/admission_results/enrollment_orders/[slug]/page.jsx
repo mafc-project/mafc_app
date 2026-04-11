@@ -9,6 +9,7 @@ import EnrollmentOrdersList from "@/components/elements/enrollmentOrdersList/Enr
 export const revalidate = 3600;
 export async function generateStaticParams() {
   const res = await getIntroductoryQuidePageData();
+  if(!res) return [];
 
    const paths = res?.enrollment_order_lists?.map((n) => ({
         params: { slug: n.slug },

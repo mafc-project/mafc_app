@@ -17,7 +17,8 @@ const pageData = await getIntroductoryQuidePageData();
 return <>
 <ProfesionsNavPanel
 professions={pageData?.professions}
-rootPath={'/entrants/areas_of_educational_activity'}/>
+rootPath={'/entrants/areas_of_educational_activity'}
+title={"ТВІЙ СТАРТ У МАЙБУТНЄ: ЩО ОБЕРЕШ ТИ?"}/>
 {children}
 <EntrantsGeneralInfo entranceDocList={pageData?.entrance_documents_list}/>
 <EntrantsRoadMap road_map_data={pageData?.entrants_road_map}/>

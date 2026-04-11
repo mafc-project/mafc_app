@@ -10,6 +10,7 @@ export const revalidate = 3600;
 
   export async function generateStaticParams() {
     const subjectCommissionsList = await getSubjectCommissionPage();
+     if(!subjectCommissionsList || !subjectCommissionsList?.subject_commissions_lists) return [];
 
     const paths = subjectCommissionsList?.subject_commissions_lists.map((item) => ({
       

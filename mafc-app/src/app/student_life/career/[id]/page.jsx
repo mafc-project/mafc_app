@@ -6,6 +6,7 @@ export const revalidate = 3600;
 
   export async function generateStaticParams() {
     const res = await getCompaniesList();
+    if(!res) return [];
 
     const paths = res.map((item) => ({
       
