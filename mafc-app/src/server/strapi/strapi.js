@@ -1042,16 +1042,11 @@ export async function getContactsData(pageName) {
    
     });
 
-     console.log(res)
-
      if(!res) return null;
 
     const json = await res.json();
-    
-
+  
     return json?.data || null;
-
-   
 
   } catch (error) {
     console.error('Error fetching data:', error);

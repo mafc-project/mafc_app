@@ -14,16 +14,24 @@ const dafaulCategory= {code: 'all', description: 'Усі новини'}
 
 export async function generateStaticParams() {
   const categories = await getAllCategories();
-  if(!categories) return [];
+  if (!categories) return [];
+
   const allCategories = [dafaulCategory, ...categories];
   const params = [];
 
   for (const category of allCategories) {
     const totalPages = await getTotalPages(category?.code, 1, POSTS_PER_PAGE);
-    const pagesToGenerate = Math.min(totalPages?.pagination?.pageCount, PREGENERATE_PAGES);
 
-    for (let page = totalPages?.pagination?.pageCount - pagesToGenerate + 1; page <= totalPages; page++) {
-      params.push({ category, page: page.toString() });
+    const total = totalPages?.pagination?.pageCount;
+    if (!total) continue;
+
+    const pagesToGenerate = Math.min(total, PREGENERATE_PAGES);
+
+    for (let page = total - pagesToGenerate + 1; page <= total; page++) {
+      params.push({
+        category: category.code,
+        page: page.toString(),
+      });
     }
   }
 

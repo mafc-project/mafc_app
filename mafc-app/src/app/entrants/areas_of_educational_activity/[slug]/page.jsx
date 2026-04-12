@@ -10,7 +10,7 @@ export async function generateStaticParams() {
   if(!res || !res?.professions) return [];
 
    const paths = res?.professions?.map((n) => ({
-        params: { slug: n.slug },
+        slug: n.slug,
       }));
   return paths
 }

@@ -12,7 +12,7 @@ export async function generateStaticParams() {
   if(!res) return [];
 
    const paths = res.map((n) => ({
-        params: { slug: n?.documentId },
+        slug: n?.documentId,
       }));
   return paths
 }

@@ -12,7 +12,7 @@ export async function generateStaticParams() {
 if(!res) return [];
 
    const paths = res?.intelligent_networking_activities?.map((n) => ({
-        params: { id: n?.documentId },
+       id: n?.documentId,
       }));
   return paths
 };

@@ -12,7 +12,7 @@ export async function generateStaticParams() {
   if(!res) return [];
 
    const paths = res?.professions?.map((n) => ({
-        params: { slug: n.slug },
+        slug: n.slug,
       }));
   return paths
 };

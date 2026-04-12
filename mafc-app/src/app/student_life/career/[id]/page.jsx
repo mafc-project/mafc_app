@@ -9,8 +9,7 @@ export const revalidate = 3600;
     if(!res) return [];
 
     const paths = res.map((item) => ({
-      
-        params: { id: item?.documentId},
+       id: item?.documentId,
       }));
 
     return paths

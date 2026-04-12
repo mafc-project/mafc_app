@@ -10,9 +10,8 @@ export const revalidate = 3600;
 export async function generateStaticParams() {
   const res = await getExtracurricularPageData();
   if(!res) return [];
-
    const paths = res?.extracurricular_activities_lists?.map((n) => ({
-        params: { id: n?.documentId },
+       id: n?.documentId,
       }));
   return paths
 };

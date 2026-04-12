@@ -2,7 +2,7 @@ export const revalidate = 3600;
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ??
   (process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
-    : 'https://custom-domain.com');
+    : 'https://mafc-app.vercel.app/');
 
 import { getAllNews, getSubjectCommissionList, getExtracurricularPageData, getIntroductoryQuidePageData, getIntelligentNetworkingPageData } from "@/server/strapi/strapi";
 

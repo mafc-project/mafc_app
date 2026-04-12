@@ -13,8 +13,7 @@ export const revalidate = 3600;
      if(!subjectCommissionsList || !subjectCommissionsList?.subject_commissions_lists) return [];
 
     const paths = subjectCommissionsList?.subject_commissions_lists.map((item) => ({
-      
-        params: { slug: item?.category?.code},
+       slug: item?.category?.code,
       }));
 
     return paths
