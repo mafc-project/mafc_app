@@ -30,7 +30,7 @@ export async function generateMetadata({ params }) {
   
   const desc = formatPreviewText(activity?.description);
   const images = extractImageSourcesFromHTML(activity?.description);
-  const poster = images?.[0]? images?.[0] : defaultPosterOgImage;
+  const poster = images?.[0]? images?.[0]?.url : defaultPosterOgImage;
 
   return {
     title: activity?.title,
