@@ -6,10 +6,11 @@ import clsx from 'clsx';
 
 
 const DocumentsList = ({documents_list, variant='singe'}) => {
-
+ const docxToRender = [...(docs_list ?? [])].sort(
+  (a, b) => a?.description - b?.description);
     return (
         <ul className={clsx(s.list, {[s.double] : variant === 'double'}) }>
-        {documents_list?.map((el)=>{
+        {docxToRender?.map((el)=>{
             return (
                 <li key={el?.id || v4()} className={s.item}>
                   <DocIcon className={s.icon}/>
