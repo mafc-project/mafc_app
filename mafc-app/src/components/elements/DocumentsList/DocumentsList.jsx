@@ -6,7 +6,7 @@ import clsx from 'clsx';
 
 
 const DocumentsList = ({documents_list, variant='singe'}) => {
- const docxToRender = [...(docs_list ?? [])].sort(
+ const docxToRender = [...(documents_list ?? [])].sort(
   (a, b) => a?.description - b?.description);
     return (
         <ul className={clsx(s.list, {[s.double] : variant === 'double'}) }>
