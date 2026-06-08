@@ -1,4 +1,4 @@
-import { getHusbanryActivityPageData } from "@/server/strapi/strapi";
+import { getDepartmentAndOptionalData } from "@/server/strapi/strapi";
 import DepartmentSection from "@/components/modules/DepartmentSection/DepartmentSection";
 import { fetchAllDocxFromSubfolders } from "@/server/google/drive";
 import EmptyState from "@/components/modules/EmptyState/EmptyState";
@@ -9,8 +9,9 @@ export const revalidate = 3600;
 export const metadata = generateStaticPageMeta('/activity_vectors/husbandry_activity');
 
 const HusbandryActivity= async()=> {
-
-    const pageData = await getHusbanryActivityPageData();
+  const pageRoute = '/api/husbandry-activity-page';
+  const queryOptions =  { data: {   populate: '*' }, images: {  populate: '*' }};
+const pageData = await getDepartmentAndOptionalData(pageRoute, queryOptions);
 
     if(!pageData) return <EmptyState/>;
 

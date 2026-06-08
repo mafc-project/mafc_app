@@ -60,7 +60,6 @@ export default async function sitemap() {
   '/educational_process/educational_opportunities_and_trajectory/dual_form_of_learning',
   '/educational_process/educational_opportunities_and_trajectory/degree_education',
   '/educational_process/educational_opportunities_and_trajectory/distance_learning',
-  '/educational_process/monitoring_the_quality_of_education',
   '/educational_process/academic_mobility',
   '/educational_process/nmt',
 

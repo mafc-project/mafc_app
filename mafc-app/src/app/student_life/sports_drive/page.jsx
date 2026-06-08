@@ -1,7 +1,7 @@
 import DepartmentSection from "@/components/modules/DepartmentSection/DepartmentSection";
 import EmptyState from "@/components/modules/EmptyState/EmptyState";
 import News from "@/components/modules/news/News";
-import { getNews, getDepartment } from "@/server/strapi/strapi";
+import { getNews, getDepartmentAndOptionalData } from "@/server/strapi/strapi";
 import { fetchAllDocxFromSubfolders } from "@/server/google/drive";
 import generateStaticPageMeta from "@/utils/generateStaticPageMeta";
 export const revalidate = 3600;
@@ -9,8 +9,8 @@ export const metadata = generateStaticPageMeta('/student_life/sports_drive');
 
 const SportsDrive = async()=> {
 const pageRoute ='/api/sports-drive-page';
-
-    const pageData = await getDepartment(pageRoute);
+ const queryOptions ={data: {populate: "*"},category: {populate: "*"},}
+    const pageData = await getDepartmentAndOptionalData(pageRoute, queryOptions);
     if(!pageData) return <EmptyState/>
 
     const {page_title, markdown, link, google_drive_doc_folder_id}= pageData.data;

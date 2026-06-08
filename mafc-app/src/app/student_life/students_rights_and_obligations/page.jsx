@@ -1,5 +1,5 @@
 
-import RulesOfConductPage from "@/components/pages/RulesOfConductPage";
+import DepartmentSection from "@/components/modules/DepartmentSection/DepartmentSection";
 import { fetchAllDocxFromSubfolders } from "@/server/google/drive";
 import { getDepartment } from "@/server/strapi/strapi";
 import generateStaticPageMeta from "@/utils/generateStaticPageMeta";
@@ -11,14 +11,17 @@ export const metadata = generateStaticPageMeta('/student_life/students_rights_an
 const StudentsRightsAndObligations = async()=> {
     const pageRoute = '/api/students-rights-and-obligations-page';
     const pageData = await getDepartment(pageRoute);
-
     if(!pageData) return <EmptyState/>;
-    const {page_title, google_drive_doc_folder_id} = pageData;
+    const {page_title, google_drive_doc_folder_id, link, markdown} = pageData?.data;
 
     const docxList = await fetchAllDocxFromSubfolders(google_drive_doc_folder_id);
   
 
-return <RulesOfConductPage page_title={page_title} docList={docxList}/>
+return  <DepartmentSection
+            page_title={page_title}
+            markdown={markdown}
+            link_item={link}
+            docList={docxList}/>
 };
 
 export default StudentsRightsAndObligations;

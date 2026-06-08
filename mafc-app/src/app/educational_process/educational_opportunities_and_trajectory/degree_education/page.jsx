@@ -1,5 +1,5 @@
-import { getDegreeEducationPageData } from "@/server/strapi/strapi";
-import { fetchAllDocxFromSubfolders } from "@/server/google/drive";
+import {getDepartmentAndOptionalData } from "@/server/strapi/strapi";
+import {fetchAllDocxFromSubfolders } from "@/server/google/drive";
 import EmptyState from "@/components/modules/EmptyState/EmptyState";
 import DepartmentSection from "@/components/modules/DepartmentSection/DepartmentSection";
 import GovernmentResourses from "@/components/modules/GovernmentResourses/GovernmentResourses";
@@ -11,8 +11,9 @@ export const metadata = generateStaticPageMeta('/educational_process/educational
 
 const DegreeEducation = async ()=> {
     
-
-    const pageData = await getDegreeEducationPageData();
+    const pageRoute = '/api/degree-education-page';
+    const queryOptions =  { data: {   populate: '*' }, universities: {  populate: '*' }}
+    const pageData = await getDepartmentAndOptionalData(pageRoute, queryOptions);
 
     if(!pageData) return <EmptyState/>;
     const {google_drive_doc_folder_id,markdown, page_title, link } = pageData?.data

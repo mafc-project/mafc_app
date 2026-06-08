@@ -1,22 +1,26 @@
-import RteTextBox from "@/components/elements/rteTextBox/RteTextBox";
-import { getCollegeHistoryPage } from "@/server/strapi/strapi";
 import EmptyState from "@/components/modules/EmptyState/EmptyState";
-import PageWrapper from "@/components/layouts/PageWrapper";
 import generateStaticPageMeta from "@/utils/generateStaticPageMeta";
+import { getDepartment } from "@/server/strapi/strapi";
+import DepartmentSection from "@/components/modules/DepartmentSection/DepartmentSection";
+import { fetchAllDocxFromSubfolders } from "@/server/google/drive";
 
 export const revalidate = 3600;
 
 export const metadata = generateStaticPageMeta('/about/college_history');
 
 const CollegeHistory = async()=> {
-
-    const pageData = await getCollegeHistoryPage();
+    const pageRoute ='/api/college-history-page';
+    const pageData = await getDepartment(pageRoute);
    
     if(!pageData) return <EmptyState/>
+      const {page_title,google_drive_doc_folder_id, markdown, link} = pageData?.data;
+      const page_docx = await fetchAllDocxFromSubfolders(google_drive_doc_folder_id);
 
-return <PageWrapper main_title={pageData?.page_title}>
-            <RteTextBox markdown={pageData?.markdown}/>
-    </PageWrapper>
+return <DepartmentSection 
+        page_title={page_title}
+        markdown={markdown}
+        link_item={link}
+        docList={page_docx}/>
 
 }
 

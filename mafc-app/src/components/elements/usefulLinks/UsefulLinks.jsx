@@ -13,7 +13,7 @@ const links = [{
 },
 {
     path: '/about/contacts',
-    title: 'контактна інформація'
+    title: 'скринька довіри'
 },
 ]
 

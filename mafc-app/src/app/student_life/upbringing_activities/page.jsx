@@ -1,4 +1,4 @@
-import { getDepartment, getNews } from "@/server/strapi/strapi";
+import { getDepartmentAndOptionalData, getNews } from "@/server/strapi/strapi";
 import { fetchAllDocxFromSubfolders } from "@/server/google/drive";
 import DepartmentSection from "@/components/modules/DepartmentSection/DepartmentSection";
 import EmptyState from "@/components/modules/EmptyState/EmptyState";
@@ -11,8 +11,9 @@ export const metadata = generateStaticPageMeta('/student_life/upbringing_activit
 const UpbringingActivities = async()=> {
 
  const pageRoute ='/api/upbringing-activities-page';
+ const queryOptions ={data: {populate: "*"},category: {populate: "*"},}
 
-    const pageData = await getDepartment(pageRoute);
+    const pageData = await getDepartmentAndOptionalData(pageRoute, queryOptions);
     if(!pageData) return <EmptyState/>
 
     const {page_title, markdown, link, google_drive_doc_folder_id}= pageData.data;

@@ -12,7 +12,7 @@ const Library = async()=> {
    
 if(!pageData) return <EmptyState/>
 
-const pageDocx = await fetchAllDocxFromSubfolders(pageData?.google_drive_folder_id)
+const pageDocx = await fetchAllDocxFromSubfolders(pageData?.data?.google_drive_doc_folder_id)
 
 return <><LibraryPage pageDocx={pageDocx} libraryData={pageData}/></>
 }

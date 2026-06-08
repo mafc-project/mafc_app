@@ -12,7 +12,7 @@ const NewsLayoutModule = ({categories,selectedCategory,children})=>{
     const router = useRouter();
       const options = [dafaulCategory, ...categories?.map((opt)=> {return {value: opt?.code, label: opt?.description}})];
 
-  
+  console.log(categories)
 
 
  const handleChangeCategory = (selected) => {

@@ -16,6 +16,7 @@ const DepartmentPage = async()=> {
     if(!pageData) return <EmptyState/>;
 
     const {page_title,google_drive_doc_folder_id, markdown, link} = pageData?.data;
+  
 
     const docxList = await fetchAllDocxFromSubfolders(google_drive_doc_folder_id);
 

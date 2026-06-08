@@ -18,8 +18,9 @@
    padding: 1rem;
    gap: 1rem;
    width: 100%;
-  
+
   justify-self: center;
+  align-items: center;
   box-shadow: $card-shadow;
  
   @include for-size('tablet'){
@@ -31,15 +32,18 @@
 
   @include for-size("desktop"){
   width: 80%;
-  max-height: 50vh;
+   
+   margin: 0 auto;
+
   }
 }
 
 .thumb{
-    display: flex;
+   display: flex;
     justify-content: center;
-  
     overflow: hidden;
+    height: 100%;
+    max-height: 50vh;
 };
 
 .image{

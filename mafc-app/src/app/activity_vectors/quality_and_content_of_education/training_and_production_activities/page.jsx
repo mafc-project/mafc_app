@@ -1,4 +1,4 @@
-import { getDepartment } from "@/server/strapi/strapi";
+import { getDepartmentAndOptionalData } from "@/server/strapi/strapi";
 import DepartmentSection from "@/components/modules/DepartmentSection/DepartmentSection";
 import { fetchAllDocxFromSubfolders } from "@/server/google/drive";
 import News from "@/components/modules/news/News";
@@ -12,7 +12,8 @@ export const metadata = generateStaticPageMeta('/activity_vectors/quality_and_co
 const PracticalTrainingPage= async()=> {
 
     const pageRoute = '/api/training-and-production-activity';
-    const pageData = await getDepartment(pageRoute);
+    const queryOptions =  { data: {   populate: '*' }, category: {  populate: '*' }};
+    const pageData = await getDepartmentAndOptionalData(pageRoute,queryOptions);
 
     if(!pageData) return <EmptyState/>;
    

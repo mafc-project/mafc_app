@@ -35,7 +35,7 @@ const ProfesionDescription = ({profesion})=> {
                     </p>
                     <p>
                         Вартість одного року навчання
-                        <span>{tuition_fees} грн</span>
+                        <span>{tuition_fees}</span>
                     </p>
                 </div>
 

@@ -8,7 +8,7 @@ const AdmissionResultsLayout = ({children})=> {
 
     return <StructureDepartmentLayout
     const rootPath = {'/entrants/admission_rules/'}
-    page_title={'правила вступу'} 
+    page_title={'Організація вступу'} 
     nav_list= {AdmissionRulesNavList}>
         {children}
     </StructureDepartmentLayout>

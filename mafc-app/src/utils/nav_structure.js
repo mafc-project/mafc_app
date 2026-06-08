@@ -67,8 +67,6 @@ const nav_structure =[
             {item: 'ОСВІТНІ МОЖЛИВОСТІ ТА ТРАЄКТОРІЯ ',
             link: '/educational_process/educational_opportunities_and_trajectory'
             },
-            {item: 'моніторинг якості освіти',
-                link: '/educational_process/monitoring_the_quality_of_education',},
             {item: 'академічна мобільність',
                 link: '/educational_process/academic_mobility'
                 },
@@ -79,7 +77,7 @@ const nav_structure =[
     }, 
     {title: 'Вступ',
      menu: [
-        {item: 'ПРАВИЛА ВСТУПУ',
+        {item: 'Організація вступу',
         link: '/entrants/admission_rules',},
         {item: 'Вступний гід',
         link: '/entrants/areas_of_educational_activity',

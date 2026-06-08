@@ -9,7 +9,7 @@ import extractImageSourcesFromHTML from "@/utils/extractImageSourcesFromHTML";
 
 const News = ({newsList,title, subtitle, category})=> {
 
-    
+    if(!newsList || newsList?.length === 0) return null;
     return (
         <section className={s.section}>
             <SectionWrapper>

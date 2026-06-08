@@ -8,7 +8,11 @@ const baseURL = process.env.STRAPI_URL;
 export async function getDepartment(route){
  
 const query = QueryString.stringify(
-    {populate:"*"},
+    {populate: {
+      data: {
+        populate: "*"
+      }
+    }},
     { encodeValuesOnly: true }
   );
 
@@ -34,18 +38,14 @@ try {
 
 }
 
-export async function getVolunteeringPageData(route){
- 
-const query = QueryString.stringify(
-    {populate:{
-      data: {
-        populate: "*"
-      },
-      news: {
-        populate: "*"
-      }
-    }},
+export async function getDepartmentAndOptionalData(route, populate = "*") {
+
+  const query = QueryString.stringify(
+
+    { populate },
+
     { encodeValuesOnly: true }
+
   );
 
 try {
@@ -227,74 +227,6 @@ try {
 
 }
 
-
-export async function getDegreeEducationPageData(){
-  const route = '/api/degree-education-page';
- 
-const query = QueryString.stringify(
-    {populate: {
-      data: {
-        populate: "*"
-      },
-      universities: {
-        populate: "*"
-      }
-    }},
-    { encodeValuesOnly: true }
-  );
-
-try {
-    const res = await fetch(`${baseURL}${route}?${query}`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      
-    });
-
-    if (!res.ok) {
-      throw new Error(`Failed to fetch. Status: ${res.status}`);
-    }
-
-    const json = await res.json();
-
-    return json?.data || null;
-  } catch (error) {
-    console.error('Error fetching professions:', error);
-    return null;
-  }
-
-}
-
-
-
-export async function getAdmissionCommittePageData(){
-const pageRoute='/api/admiddion-committe-page';
-const query = QueryString.stringify(
-    {populate:"*"},
-    { encodeValuesOnly: true }
-  );
-
-try {
-    const res = await fetch(`${baseURL}${pageRoute}?${query}`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      
-    });
-
-    if (!res.ok) {
-      throw new Error(`Failed to fetch. Status: ${res.status}`);
-    }
-    const json = await res.json();
-
-    return json?.data || null;
-  } catch (error) {
-    console.error('Error fetching professions:', error);
-    return null;
-  }
-
-}
-
 export async function getEducationalCalendar() {
   try {
     const res = await fetch(`${baseURL}/api/admission-calendars?populate=*`, {
@@ -364,35 +296,6 @@ export async function getMisionAndGoalsPage() {
     return null;
   }
 };
-
-export async function getCollegeHistoryPage() {
-
-   const route = '/api/college-history-page';
-
-  const query = QueryString.stringify({
-  populate: "*"
-}, { encodeValuesOnly: true });
-
-  try {
-     const res = await fetch(`${baseURL}${route}?${query}`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-   
-    });
-
-    if(!res) return null;
-
-    const json = await res.json();
-
-    return json?.data ?? null;
-
-  } catch (error) {
-    console.error('Error fetching material-technical-base:', error);
-    return null;
-  }
-};
-
 
 export async function getCModernWarMuseumPage() {
 
@@ -500,51 +403,12 @@ export async function getDistanceLearningPage() {
 }
 
 
-export async function getHusbanryActivityPageData() {
-   const route = '/api/husbandry-activity-page';
-
-  const query = QueryString.stringify({
-  populate: {
-    data: {
-      populate: "*"
-    },
-    images: {
-      populate: "*"
-    }
-  }
-}, { encodeValuesOnly: true });
-
-  try {
-    const res = await fetch(`${baseURL}${route}?${query}`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-   
-    });
-
-     if(!res) return null;
-
-    const json = await res.json();
-
-    return json?.data || null;
-
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    return null;
-  }
-};
-
-
-
 export async function getSocialSupportPageData() {
    const route = '/api/social-support-page';
 
   const query = QueryString.stringify({
   populate: {
     data: {
-      populate: "*"
-    },
-    teacher: {
       populate: "*"
     },
     student_ratings_folder_id: {
@@ -1175,7 +1039,10 @@ export async function getAdministration() {
       populate: "*"
     },
     teachers: {
-     populate: "*"
+      populate: {
+        teacher_info: {populate: ['education', 'teacher_experience']},
+        image: {populate: true}
+       }
     }
   }
 }, { encodeValuesOnly: true });
@@ -1535,6 +1402,9 @@ export async function getLibraryPage (){
   const route = `/api/library`;
  const query = QueryString.stringify(
     {populate: {
+      data: {
+        populate: "*"
+      },
       e_libraries: {
         populate: "*"
       },
@@ -1613,16 +1483,15 @@ try {
 
 }
 
-
-
-
 export async function getCareerPage(){
   const route = `/api/sareer-page`;
  const query = QueryString.stringify(
     {populate:{
      companies:{
       populate: "*"
-     } 
+     },
+     data: {populate: "*"},
+     news: {populate: "*"}
     },},
     { encodeValuesOnly: true }
   );

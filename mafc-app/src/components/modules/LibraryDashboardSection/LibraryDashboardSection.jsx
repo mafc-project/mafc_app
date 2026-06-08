@@ -3,7 +3,7 @@ import SectionWrapper from '@/components/layouts/SectionWrapper';
 import WorkSchedule from '@/components/elements/work_schedule/work_schedule';
 
 
-const LibraryDashboardSection = ({page_title, dashboardData, work_shedule_data})=> {
+const LibraryDashboardSection = ({dashboardData, work_shedule_data})=> {
 
 
     if(!dashboardData && !work_shedule_data) return null;
@@ -11,7 +11,6 @@ const LibraryDashboardSection = ({page_title, dashboardData, work_shedule_data})
 return(
     <section>
         <SectionWrapper>
-           {page_title && <h3 className={s.main_title}>{page_title}</h3>}
             {dashboardData && <div className={s.dash_box}>
                 <ul className={s.dash_list}>
                 {dashboardData?.map(({id, title, value})=> {

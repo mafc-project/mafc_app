@@ -1,4 +1,4 @@
-import { getDepartment } from "@/server/strapi/strapi";
+import { getDepartmentAndOptionalData } from "@/server/strapi/strapi";
 import { fetchAllDocxFromSubfolders } from "@/server/google/drive";
 import DepartmentSection from "@/components/modules/DepartmentSection/DepartmentSection";
 import EmptyState from "@/components/modules/EmptyState/EmptyState";
@@ -11,8 +11,9 @@ export const metadata = generateStaticPageMeta('/educational_process/educational
 
 const DualFormOfLearning = async ()=> {
 
-    const pageRoute = '/api/dual-form-of-learning-page'
-    const pageData = await getDepartment(pageRoute);
+    const pageRoute = '/api/dual-form-of-learning-page';
+    const queryOptions =  { data: {   populate: '*' }, video: {  populate: '*' }, image: {  populate: '*' }}
+    const pageData = await getDepartmentAndOptionalData(pageRoute,queryOptions);
     if(!pageData) return <EmptyState/>;
 
     const {data, video, image} = pageData;

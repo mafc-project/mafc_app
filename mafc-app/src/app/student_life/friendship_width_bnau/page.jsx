@@ -1,7 +1,7 @@
 import DepartmentSection from "@/components/modules/DepartmentSection/DepartmentSection";
 import EmptyState from "@/components/modules/EmptyState/EmptyState";
 import { fetchAllDocxFromSubfolders } from "@/server/google/drive";
-import { getVolunteeringPageData } from "@/server/strapi/strapi";
+import { getDepartmentAndOptionalData } from "@/server/strapi/strapi";
 import AllNews from "@/components/modules/allNews/AllNews";
 import SectionWrapper from "@/components/layouts/SectionWrapper";
 import generateStaticPageMeta from "@/utils/generateStaticPageMeta";
@@ -12,8 +12,8 @@ export const metadata = generateStaticPageMeta('/student_life/friendship_width_b
 const FriendshipWidthBnau = async()=> {
 
     const route ='/api/friendship-width-bnau';
-
-    const pageData = await getVolunteeringPageData(route);
+     const queryOptions ={data: {populate: "*"},news: {populate: "*"},}
+     const pageData = await getDepartmentAndOptionalData(route, queryOptions);
 
     if(!pageData) return <EmptyState/>;
 

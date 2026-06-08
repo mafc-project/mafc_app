@@ -2,14 +2,17 @@ import { getCareerPage } from "@/server/strapi/strapi";
 import { fetchAllDocxFromSubfolders } from "@/server/google/drive";
 import CarrerPage from "@/components/pages/CareerPage";
 import generateStaticPageMeta from "@/utils/generateStaticPageMeta";
+import EmptyState from "@/components/modules/EmptyState/EmptyState";
 
 export const revalidate = 3600;
 export const metadata = generateStaticPageMeta('/student_life/career');
 
 const Career= async()=>{
-const folderId='15DTUwx9rzV_VO1XTB_aPHZbiKIk_YjWq';
+
 const pageData = await getCareerPage();
-const docList = await fetchAllDocxFromSubfolders(folderId);
+if(!pageData) return <EmptyState/>;
+
+const docList = await fetchAllDocxFromSubfolders(pageData?.data?.google_drive_doc_folder_id);
 
 
 
